@@ -73,3 +73,32 @@ export async function commandCatch(state: State, ...args: string[]) {
     console.log(`${args[0]} escaped!`);
   }
 }
+
+export async function commandInspect(state: State, ...args: string[]) {
+  if (!args[0]) throw new Error("Enter valid pokemon name");
+
+  const pokemon = state.catch[args[0]];
+  if (!pokemon) throw new Error("you have not caught that pokemon");
+
+  console.log(`Name: ${pokemon.name}`);
+  console.log(`Height: ${pokemon.height}`);
+  console.log(`Weight: ${pokemon.weight}`);
+  console.log(`Stats:`);
+  for (const state of pokemon.stats) {
+    console.log(` -${state.stat.name}: ${state.base_stat}`);
+  }
+  console.log(`Types:`);
+  for (const type of pokemon.types) {
+    console.log(` - ${type.type.name}`);
+  }
+}
+
+export async function commandPokedex(state: State) {
+  if (Object.keys(state.catch).length === 0)
+    throw new Error("Your pokedex is empty!");
+
+  console.log("Your Pokedex:");
+  for (const key in state.catch) {
+    console.log(` - ${state.catch[key].name}`);
+  }
+}
