@@ -1,0 +1,29 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "Simple CLI uses pokedex api",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node dist/main.js",
+    "build": "npx tsc",
+    "dev": "npx tsc && node dist/main.js",
+    "test": "vitest --run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HetSolanki/Pokedex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HetSolanki/Pokedex/issues"
+  },
+  "homepage": "https://github.com/HetSolanki/Pokedex#readme",
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}
