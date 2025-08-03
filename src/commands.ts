@@ -52,3 +52,24 @@ export async function commandExplore(state: State, ...args: string[]) {
     throw new Error("No Pokemon found.");
   }
 }
+
+export async function commandCatch(state: State, ...args: string[]) {
+  if (!args[0]) throw new Error("Provide valid pokemon name");
+  if (state.catch[args[0]])
+    throw new Error(`${args[0]} is already caught by the hulk!`);
+
+  console.log(`Throwing a Pokeball at ${args[0]}...`);
+
+  const pokemon = await state.pokeAPI.fetchPokemon(args[0]);
+
+  if (!pokemon) throw new Error("No pokemon found!");
+
+  let isCaught =
+    Math.random() * pokemon.base_experience > pokemon.base_experience / 2;
+  if (isCaught) {
+    console.log(`${args[0]} was caught!`);
+    state.catch[pokemon.name] = pokemon;
+  } else {
+    console.log(`${args[0]} escaped!`);
+  }
+}
