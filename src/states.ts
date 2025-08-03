@@ -6,7 +6,7 @@ export type CLICommand = {
   name: string;
   description: string;
   callback: (state: State) => Promise<void>;
-};
+};  
 
 export type State = {
   r1: Interface;
