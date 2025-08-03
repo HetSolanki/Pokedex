@@ -18,10 +18,10 @@ export function startREPL(state: State) {
       return;
     }
 
-    const commandName = words[0];
+    const [commandName, ...args] = words;
     try {
       if (registery[commandName]) {
-        await registery[commandName].callback(state);
+        await registery[commandName].callback(state, ...args);
       } else {
         console.log("Unknown command. Try 'help' for list of commands.");
       }
