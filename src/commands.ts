@@ -4,6 +4,7 @@ export async function commandExit(state: State) {
   const { r1 } = state;
   console.log("Closing the Pokedex... Goodbye!");
   r1.close();
+  state.pokeAPI.closeCache();
   process.exit(0);
 }
 
